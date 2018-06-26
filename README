@@ -1,0 +1,14 @@
+由于gorm并没有对负载均衡做相应处理，这边简单做了主从负载均衡
+第一参数为相应的配置项KEY,配置项使用的是无闻的ini
+第二个参数是否链接主库，ture为主库链接，false为从库链接
+eg:链接主库
+GetConn("database_pai",true)
+eg:链接从库
+GetConn("database_pai",true)
+=======================================
+app.ini
+HOST = mysql-one.dev.cloud.db:5309,mysql-two.dev.cloud.db:5309,mysql-three.dev.cloud.db:5309
+默认第一个链接为主库链接（mysql-one.dev.cloud.db:5309）,其余链接为从库链接，从库链接自动负载均衡
+如有链接池需求，请自行更改
+
+
